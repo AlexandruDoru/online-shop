@@ -1,0 +1,34 @@
+<%= form_for [:admin, @product_category], html: { multipart: true } do |f| %>
+  <% if @product_category.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@product_category.errors.count, "error") %> prohibited this product_category from being saved:</h2>
+
+      <ul>
+      <% @product_category.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.fields_for :description do |ff| %>
+    <div class="field">
+      <%= ff.label :description %><br>
+      <%= ff.text_area :description %>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :main_category %><br>
+    <%= f.select :main_category_id, options_from_collection_for_select(MainCategory.all, 'id', 'name'), prompt: 'Select the main category' %>
+  </div>
+  <div class="field">
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

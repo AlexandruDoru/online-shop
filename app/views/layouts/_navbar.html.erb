@@ -1,0 +1,16 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <%= link_to 'Online Shop', root_path, class: 'navbar-brand' %>
+    </div>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <% if signed_in? %>
+            <%= link_to 'Logout', session_path(current_user), method: :delete  %>
+          <% else %>
+            <%= link_to 'Login', root_path %>
+          <% end %>
+        </li>
+      </ul>
+  </div>
+</nav>

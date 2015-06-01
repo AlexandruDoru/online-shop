@@ -1,0 +1,6 @@
+<% MainCategory.all.each do |x| %>
+  <h1><%= x.name %></h1><br/>
+  <% x.product_categories.each do |y| %>
+  	<span><%= y.name %></span>s
+  <% end %>
+<% end %>

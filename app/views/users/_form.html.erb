@@ -1,0 +1,33 @@
+<%= form_for @user do |f| %>
+  <div class="page-header">
+    Register
+  </div>
+  <div class="form-group">
+    <div class="col-sm-6">
+      <%= f.text_field :firstname, class: 'form-control', placeholder: 'Firstname' %>
+    </div>
+    <div class="col-sm-6">
+      <%= f.text_field :lastname, class: 'form-control', placeholder: 'Lastname' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <%= f.text_field :email, class: 'form-control', placeholder: 'Email' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <%= f.password_field :password, class: 'form-control', placeholder: 'Password' %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-12">
+      <%= f.password_field :password_confirmation, class: 'form-control', placeholder: 'Password Confirmation' %>
+    </div>
+  </div>
+  <div class="form-group page-footer">
+    <div class="col-sm-12">
+      <%= f.submit 'Register', class: 'btn btn-default' %>
+    </div>
+  </div>
+<% end %>

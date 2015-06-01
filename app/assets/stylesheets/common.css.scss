@@ -1,0 +1,80 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,300,400,700);
+
+body {
+  background: url('background.jpg');
+  font-family: 'Open Sans'!important;
+}
+
+.custom-container {
+  position: relative;
+  padding: 20px 40px;
+  background-color: #F7F7F7; 
+  margin: 0 auto;
+  top: 100px;
+  -moz-border-radius: 2px; 
+  -webkit-border-radius: 2px; 
+  border-radius: 2px; 
+  -moz-box-shadow: 4px 5px 2px rgba(0, 0, 0, 0.3); 
+  -webkit-box-shadow: 4px 5px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 4px 5px 2px rgba(0, 0, 0, 0.3);
+
+  .page-header {
+    margin-top: 0px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .page-footer {
+    margin-bottom: 0px;
+  }
+
+  &.small-container {
+    width: 400px;
+    
+    &#login {
+      .register-span {
+        text-align: center;
+        font-size: 12px;
+        display: block;
+      }
+    }
+
+    &#register {
+      .page-footer {
+        text-align: center;
+      }
+    }
+  }
+
+  &.big-container {
+    width: 1000px;
+    caption {
+      a {
+        float: right;
+      }
+    }
+    .buttons{
+      width: 212px;
+    }
+    .content {
+      text-overflow: ellipsis;
+      max-height: 192px;
+      overflow: hidden;
+      display: block;
+    }
+  }
+}
+
+/* Override Bootstrap 3 font locations */
+@font-face {
+  font-family: 'Glyphicons Halflings';
+  src: url('../assets/glyphicons-halflings-regular.eot');
+  src: url('../assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+  url('../assets/glyphicons-halflings-regular.woff') format('woff'),
+  url('../assets/glyphicons-halflings-regular.ttf') format('truetype'),
+  url('../assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+
+#adminContainer {
+  background: white;
+    border-radius: 5px;
+}
