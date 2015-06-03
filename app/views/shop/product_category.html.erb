@@ -1,0 +1,17 @@
+<h1><%= @product_category.name %></h1>
+  <% @product_category.products.each do |y| %>
+	<div class="col-sm-6 col-md-4">
+	  <div class="thumbnail">
+	    <%= image_tag y.image.url, class: "img-thumbnail" %>
+	    <div class="caption">
+	      <h3><%= link_to y.name, product_path(y.id) %></h3>
+	      <p>
+	      	<%= form_tag add_to_cart_path(y.id), remote: true do %>
+	      		<%= text_field_tag :quantity, 1 %>
+	      		<%= submit_tag %>
+	      	<% end %>
+	      </p>
+	    </div>
+	</div>
+</div>
+  <% end %>

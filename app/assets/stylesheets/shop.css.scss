@@ -10,5 +10,13 @@
   	background: white;
   	float: right;
   	border-radius: 4px;
+
+  	.thumbnail {
+  		width: 210px;
+  		.img-thumbnail {
+  			max-height: 190px;
+  			max-width: 190px;
+  		}
+  	}
   }
 }

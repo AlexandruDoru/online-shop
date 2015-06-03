@@ -22,6 +22,11 @@ Rails.application.routes.draw do
 
   get 'admin/' => 'admin#dashboard', :as => 'admin'
   get '/' => 'shop#main_category', :as => 'main_category'
+  get 'product_category/:id' => 'shop#product_category', as: 'product_category'
+  get 'product/:id' => 'shop#product', as: 'product'
+  post 'product/:id/add_to_cart' => 'shop#add_to_cart', as: 'add_to_cart'
+  post 'product/:id/delete_from_cart' => 'shop#delete_from_cart', as: 'delete_from_cart'
+  get 'checkout' => 'shop#checkout', as: 'checkout'
 
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]

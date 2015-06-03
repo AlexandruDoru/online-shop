@@ -20,14 +20,12 @@
         <td><%= discount.since_when %></td>
         <td><%= discount.until_when %></td>
         <td><%= discount.product_id %></td>
-        <td><%= link_to 'Show', discount %></td>
-        <td><%= link_to 'Edit', edit_discount_path(discount) %></td>
-        <td><%= link_to 'Destroy', discount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', admin_discount_path(discount) %></td>
+        <td><%= link_to 'Edit', edit_admin_discount_path(discount) %></td>
+        <td><%= link_to 'Destroy', admin_discount_path(discount), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Discount', new_discount_path %>

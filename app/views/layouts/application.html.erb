@@ -17,6 +17,12 @@
         <% MainCategory.all.each do |x| %>
           <span><%= x.name %></span><br/>
         <% end %>
+        <% if signed_in? %>
+          <hr/>
+          <div id='cartNav'>
+            <%= render 'common/cart' %>
+          </div>
+        <% end %>
       </div>
       <div id='rightContent'>
         <%= render 'layouts/flash_message' %>

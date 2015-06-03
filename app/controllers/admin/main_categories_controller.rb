@@ -4,17 +4,21 @@ class Admin::MainCategoriesController < ApplicationController
 
   def index
     @main_categories = MainCategory.all
+    @title = 'Main Categories Listing'
   end
 
   def show
+    @title = 'Main Category'
   end
 
   def new
     @main_category = MainCategory.new
     @main_category.description = Description.new
+    @title = 'New Main Category'
   end
 
   def edit
+    @title = 'Edit Main Category'
   end
 
   def create

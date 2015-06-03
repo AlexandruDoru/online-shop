@@ -11,9 +11,13 @@
 
 <div class='container' id='adminContainer'>
   <div class='row'>
-    <div class='col-md-12'>
-      <%= render 'layouts/flash_message' %>
+    <div class='panel panel-primary'>
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= @title %></h3>
+      </div>
+      <div class="panel-body"><%= render 'layouts/flash_message' %>
       <%= yield %>
+      </div>
     </div>
   </div>
 </div>

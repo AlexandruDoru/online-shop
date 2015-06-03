@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # skip_before_filter :require_login, only: [:new, :create]
+  layout 'session', only: [:new]
 
   def new
     @user = User.new
@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "You have successfully registered"
       session[:user_id] = @user.id
-      redirect_to documents_path
+      redirect_to root_path
     else 
       flash[:error] = @user.errors.full_messages.first
       redirect_to :back
