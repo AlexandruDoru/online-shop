@@ -1,4 +1,4 @@
-class PaymentsController < ApplicationController
+class Admin::PaymentsController < ApplicationController
   layout "admin" 
 
   before_action :set_payment, only: [:show, :edit, :update, :destroy]

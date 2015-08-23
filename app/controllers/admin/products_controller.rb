@@ -5,17 +5,21 @@ class Admin::ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @title = 'Product Listing'
   end
 
   def show
+    @title = 'Product'
   end
 
   def new
     @product = Product.new
     @product.description = Description.new
+    @title = 'New Product'
   end
 
   def edit
+    @title = 'Edit Product'
   end
 
   def create

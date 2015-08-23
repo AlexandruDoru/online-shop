@@ -53,3 +53,7 @@ gem 'bootstrap-wysihtml5-rails'
 gem 'delayed_job_active_record'
 
 gem "paperclip"
+
+gem 'stripe'
+
+gem 'cancan'

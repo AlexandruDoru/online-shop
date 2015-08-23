@@ -2,8 +2,12 @@ class ShopController < ApplicationController
   before_filter :set_cart
   before_filter :require_login, only: [:add_to_cart, :delete_from_cart, :checkout]
 
-  def main_category
+  def index
     @main_categories = MainCategory.all
+  end
+
+  def main_category
+    @main_category = MainCategory.find(params[:id])
   end
 
   def product_category
@@ -23,7 +27,18 @@ class ShopController < ApplicationController
   end
 
   def checkout
+    @payment = Payment.new
   end
+
+  def pay
+
+    @payment = Payment.new(params[:subscription])
+  if @payment.save_with_payment(current_user.email)
+    redirect_to @payment, :notice => "Thank you for subscribing!"
+  else
+    render :new
+  end
+end
 
   private 
 

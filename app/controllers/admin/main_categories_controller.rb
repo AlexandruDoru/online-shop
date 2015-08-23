@@ -25,7 +25,8 @@ class Admin::MainCategoriesController < ApplicationController
     @main_category = MainCategory.new(main_category_params)
     respond_to do |format|
       if @main_category.save
-        format.html { redirect_to admin_main_categories_path, notice: 'Main category was successfully created.' }
+        format.html { redirect_to admin_main_categories_path }
+        flash[:notice] = 'Main category was successfully created.'
       else
         format.html { render :new }
       end

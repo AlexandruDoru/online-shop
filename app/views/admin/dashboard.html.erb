@@ -1,3 +1,8 @@
-<%= link_to 'Main Categories', admin_main_categories_path %>
-<%= link_to 'Product Categories', admin_product_categories_path %>
-<%= link_to 'Products', admin_products_path %>
+<div class="list-group">  
+	<%= link_to 'Main Categories', admin_main_categories_path, class: 'list-group-item' %>
+	<%= link_to 'Product Categories', admin_product_categories_path, class: 'list-group-item' %>
+	<%= link_to 'Products', admin_products_path, class: 'list-group-item' %>
+	<%= link_to 'Users', admin_users_path, class: 'list-group-item' %>
+	<%= link_to 'Orders', admin_orders_path, class: 'list-group-item' %>
+	<%= link_to 'Payments', admin_payments_path, class: 'list-group-item' %>
+</div>

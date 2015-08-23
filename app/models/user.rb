@@ -19,4 +19,17 @@ class User < ActiveRecord::Base
   validates :email, :length => { :maximum => 100 }
   validates_uniqueness_of :email
   validates_format_of :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+
+  has_attached_file :thumbnail, url: "user/:id.:extension",
+                path: "public/images/user/:id.:extension"
+  validates_attachment_content_type :thumbnail, :content_type => %w(image/jpeg image/jpg image/png)
+
+  def employee?
+    role == 'employee'
+  end
+
+  def customer?
+    role == 'customer'
+  end
+  
 end

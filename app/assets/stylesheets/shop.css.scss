@@ -10,13 +10,22 @@
   	background: white;
   	float: right;
   	border-radius: 4px;
+  	.main-category {
+  		text-align: center;
 
-  	.thumbnail {
-  		width: 210px;
-  		.img-thumbnail {
-  			max-height: 190px;
-  			max-width: 190px;
+  		h1 {
+  			text-align: left;
   		}
+  		.thumbnail-category{
+	  	border: 1px black solid;
+	  	border-radius: 1px;
+	  	width: 215px;
+	  	img {
+	  		width: 100%;
+	  	}
+	  	display: inline-block;
   	}
+  	}	
+  	
   }
 }

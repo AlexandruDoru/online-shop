@@ -1,14 +1,11 @@
-<% MainCategory.all.each do |x| %>
-  <h1><%= x.name %></h1><br/>
-  <% x.product_categories[0..2].each do |y| %>
-	  <div class="col-sm-6 col-md-4">
-	    <div class="thumbnail">
-	      <%= image_tag y.image.url, class: "img-thumbnail" %>
-	      <div class="caption">
-	        <h3><%= link_to y.name, product_category_path(y.id) %></h3>
-	      </div>
+<%= @main_category.name %>
+<% @main_category.product_categories.each do |category| %>
+	<div class="col-sm-6 col-md-4">
+	  <div class="thumbnail">
+	    <%= image_tag category.image.url, class: "img-thumbnail" %>
+	    <div class="caption">
+	      <h3><%= link_to category.name, product_category_path(category) %></h3>
 	    </div>
 	</div>
-  <% end %>
-  <br/>
+	</div>
 <% end %>

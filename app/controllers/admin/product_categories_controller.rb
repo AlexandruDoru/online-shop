@@ -5,17 +5,21 @@ class Admin::ProductCategoriesController < ApplicationController
 
   def index
     @product_categories = ProductCategory.all
+    @title = 'Product Categories Listing'
   end
 
   def show
+    @title = 'Product'
   end
 
   def new
     @product_category = ProductCategory.new
     @product_category.description = Description.new
+    @title = 'New Product'
   end
 
   def edit
+    @title = 'Edit Product'
   end
 
   def create
