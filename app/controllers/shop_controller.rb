@@ -31,15 +31,30 @@ class ShopController < ApplicationController
   end
 
   def pay
-
-    @payment = Payment.new(params[:subscription])
-  if @payment.save_with_payment(current_user.email)
-    redirect_to @payment, :notice => "Thank you for subscribing!"
-  else
-    render :new
+    @payment = Payment.new(
+      stripe_card_token: params[:stripe_card_token],
+      cardnumber: params[:card_number],
+      order_id: params[:order_id]
+    )
+    if @payment.save_with_payment(current_user.email)
+      session.delete(:order_id)
+      redirect_to root_path, :notice => "Thank you for buying!"
+    else
+      redirect_to :back
+    end
   end
-end
 
+  def customer
+    @customer = User.find(params[:id])
+  end
+
+  def add_address
+    @customer = User.find(params[:id])
+  end
+
+  def create_address
+  end
+    
   private 
 
   def set_cart

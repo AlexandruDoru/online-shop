@@ -17,7 +17,11 @@ Rails.application.routes.draw do
   post 'product/:id/add_to_cart' => 'shop#add_to_cart', as: 'add_to_cart'
   post 'product/:id/delete_from_cart' => 'shop#delete_from_cart', as: 'delete_from_cart'
   get 'checkout' => 'shop#checkout', as: 'checkout'
+  post 'pay' => 'shop#pay'
   get 'main_category/:id' => 'shop#main_category', as: 'main_category'
+  get 'customer/:id' => 'shop#customer', as: 'customer'
+  get 'add_address/:id' => 'shop#add_address', as: 'add_address'
+  post 'create_address' => 'shop#create_address', as: 'create_address'
   
   resources :sessions, only: [:new, :create, :destroy]
   resources :users, only: [:new, :create]

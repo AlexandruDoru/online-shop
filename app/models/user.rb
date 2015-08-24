@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
-  has_one :order
+  has_many :orders
+  has_many :shipping_addresses
 
   has_secure_password
 

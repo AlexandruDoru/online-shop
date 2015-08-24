@@ -1,16 +1,16 @@
-var subscription;
+var payment;
 
 jQuery(function() {
   Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'));
-  return subscription.setupForm();
+  return payment.setupForm();
 });
 
-subscription = {
+payment = {
   setupForm: function() {
-    return $('#new_subscription').submit(function() {
+    $('#new_payment').submit(function() {
       $('input[type=submit]').attr('disabled', true);
       if ($('#card_number').length) {
-        subscription.processCard();
+        payment.processCard();
         return false;
       } else {
         return true;
@@ -25,12 +25,12 @@ subscription = {
       expMonth: $('#card_month').val(),
       expYear: $('#card_year').val()
     };
-    return Stripe.createToken(card, subscription.handleStripeResponse);
+    return Stripe.createToken(card, payment.handleStripeResponse);
   },
   handleStripeResponse: function(status, response) {
     if (status === 200) {
-      $('#subscription_stripe_card_token').val(response.id);
-      return $('#new_subscription')[0].submit();
+      $('#stripe_card_token').val(response.id);
+      return $('#new_payment')[0].submit();
     } else {
       $('#stripe_error').text(response.error.message);
       return $('input[type=submit]').attr('disabled', false);

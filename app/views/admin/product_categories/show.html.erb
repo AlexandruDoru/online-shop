@@ -1,21 +1,29 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product_category.name %>
-</p>
+<div class='form-horizontal'>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Name</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product_category.name %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Description</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product_category.description.description %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Main Category</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product_category.main_category.name %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Image</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= image_tag @product_category.image.url, class: 'img-thumbnail', style: "max-width: 200px;" %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>Description:</strong>
-  <%= @product_category.description.description %>
-</p>
-
-<p>
-  <strong>Main category:</strong>
-  <%= @product_category.main_category.name %>
-</p>
-<p>
-  <strong>Image:</strong>
-  <%= @product_category.image %>
-</p>
-
-<%= link_to 'Edit', edit_admin_product_category_path(@product_category) %> |
-<%= link_to 'Back', admin_product_categories_path %>
+<%= link_to 'Edit', edit_admin_product_category_path(@product_category), class: 'btn btn-primary' %>
+<%= link_to 'Back', admin_product_categories_path, class: 'btn btn-default' %>

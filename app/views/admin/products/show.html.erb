@@ -1,23 +1,49 @@
-<p>
-  <strong>Name:</strong>
-  <%= @product.name %>
-</p>
+<div class='form-horizontal'>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Name</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product.name %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Description</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product.description.description %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Main Category</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product.main_category.name %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Product Category</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product.product_category.name %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Image</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= image_tag @product.image.url, class: 'img-thumbnail', style: "max-width: 200px;" %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Price</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product.price %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Quantity</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @product.quantity %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <strong>Product category:</strong>
-  <%= @product.product_category_id %>
-</p>
-
-<p>
-  <strong>Image:</strong>
-  <%= @product.image %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @product.description_id %>
-</p>
-
-<%= link_to 'Edit', edit_admin_product_path(@product) %> |
-<%= link_to 'Back', admin_products_path %>
-<%= link_to 'Add Discount', new_admin_discount_path(product_id: @product.id) %>
+<%= link_to 'Edit', edit_admin_product_path(@product), class: 'btn btn-default' %> |
+<%= link_to 'Back', admin_products_path, class: 'btn btn-primary' %>
+<%= link_to 'Add Discount', new_admin_discount_path(product_id: @product.id), class: 'btn btn-success' %>
+<%= link_to 'Add Related Product', new_admin_related_product_path(product_id: @product.id), class: 'btn btn-success' %>

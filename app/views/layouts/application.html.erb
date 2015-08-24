@@ -15,9 +15,10 @@
   <div class='row'>
     <div class='col-md-12'>
       <div id='leftNavigation'>
+        <%= link_to 'My Account', customer_path(current_user) %>
         <p>Main Categories</p>
         <% MainCategory.all.each do |x| %>
-          <span><%= x.name %></span><br/>
+          <span><%= link_to x.name, x %></span><br/>
         <% end %>
         <% if signed_in? %>
           <hr/>
