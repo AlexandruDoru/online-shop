@@ -1,0 +1,14 @@
+<% MainCategory.all.each do |x| %>
+  <div class='main-category'>
+	  <h1><%= x.name %></h1><br/>
+	  <% x.product_categories[0..3].each do |y| %>
+		  <div class='thumbnail-category'>
+		  	<h3><%= link_to y.name, product_category_path(y.id) %></h3>
+		    <%= image_tag y.image.url %>
+		    
+		</div>
+	  <% end %>
+	  <%= link_to 'more', main_category_path(x) %>
+  </div>
+  <br/>
+<% end %>
