@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
     @user = User.find_by_email(params[:session][:email].downcase)
     if @user.present? && @user.authenticate(params[:session][:password])
       session[:user_id] = @user.id
-      session[:order_id] = @user.order.id if @user.order.present? 
+      session[:order_id] = @user.orders.last.id if @user.orders.any? 
       flash[:success] = "You are successfully signed in"
       redirect_to root_path
     else

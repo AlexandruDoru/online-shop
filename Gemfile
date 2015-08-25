@@ -57,3 +57,5 @@ gem "paperclip"
 gem 'stripe'
 
 gem 'cancan'
+
+gem 'bootstrap-datepicker-rails'

@@ -8,6 +8,11 @@ Rails.application.routes.draw do
     resources :orders
     resources :main_categories
     resources :products
+    post 'get_category' => 'products#get_category', as: 'get_category'
+    get 'add_discount/:product_id' => 'products#add_discount', as: 'add_discount' 
+    post 'post_discount' => 'products#post_discount', as: 'post_discount'
+    get 'add_related_product/:product_id' => 'products#add_related_product', as: 'add_related_product'
+    post 'post_related_product' => 'products#post_related_product', as: 'post_related_product' 
   end
 
   get 'admin/' => 'admin#dashboard', :as => 'admin'

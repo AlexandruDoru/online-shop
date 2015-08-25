@@ -1,19 +1,36 @@
-<p id="notice"><%= notice %></p>
+<div class='form-horizontal'>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Customer Name</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @order.user.firstname + ' ' + @order.user.lastname %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Value</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @order.value %>
+    </p>
+  </div>
+  <div class="form-group">
+    <strong class='col-sm-2 control-label'>Shipping Address</strong>
+    <p class="col-sm-10" style="margin-top: 7px; margin-bottom: 0px;">
+      <%= @order.shipping_address.address.street if @order.shipping_address.present? %>
+    </p>
+  </div>
+  <table class="table table-stripped" style="width: 95%; margin-left: 20px;">
+    <thead>
+      <th>Product</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <% @order.order_lists.each do |order_list| %>
+        <tr>
+          <td><%= order_list.product.name %></td>
+          <td><%= order_list.product.price %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @order.user_id %>
-</p>
-
-<p>
-  <strong>Value:</strong>
-  <%= @order.value %>
-</p>
-
-<p>
-  <strong>Shipping address:</strong>
-  <%= @order.shipping_address_id %>
-</p>
-
-<%= link_to 'Edit', edit_order_path(@order) %> |
-<%= link_to 'Back', orders_path %>
+<%= link_to 'Back', admin_orders_path, class: 'btn btn-primary' %>

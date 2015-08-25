@@ -1,6 +1,9 @@
 class Order < ActiveRecord::Base
   has_many :order_lists
 
+  belongs_to :user
+  belongs_to :shipping_address
+
 
   def add_to_order_list(item, quantity, user)
     order_item = order_lists.find_by_product_id(item)

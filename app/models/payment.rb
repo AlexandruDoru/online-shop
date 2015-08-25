@@ -1,6 +1,7 @@
 class Payment < ActiveRecord::Base
 
-attr_accessor :stripe_card_token
+  attr_accessor :stripe_card_token
+  belongs_to :order
 
   def save_with_payment(email)
     if valid?

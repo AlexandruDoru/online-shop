@@ -1,9 +1,11 @@
-<% @order.order_lists.each do |x| %>
-	<%= x.product.name %>
-	<%= x.quantity %>
-	<%= link_to 'x', delete_from_cart_path(x.id), method: 'post', remote: true %>
-<% end %>
-<br/>
-<%= @order.value %>
+<% if @order.order_lists.any? %>
+  <% @order.order_lists.each do |x| %>
+    <%= x.product.name %>
+    <%= x.quantity %>
+    <%= link_to 'x', delete_from_cart_path(x.id), method: 'post', remote: true %>
+  <% end %>
+  <br/>
+  <%= @order.value %>
 
-<%= link_to 'Checkout', checkout_path %>
+  <%= link_to 'Checkout', checkout_path %>
+<% end %>

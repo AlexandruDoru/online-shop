@@ -1,0 +1,4 @@
+$('#product_product_category_id').empty();
+<% @product_categories.each do |product_category| %>
+	$('#product_product_category_id').append($("<option></option>").attr("value", <%= product_category.id %>).text('<%= product_category.name %>'));
+<% end %>

@@ -41,6 +41,6 @@ class Admin::UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:product_category).permit(:image, :name, :main_category_id, description_attributes: [:description])
+      params.require(:user).permit(:thumbnail, :firstname, :lastname, :role, :phone_number, :email)
     end
 end

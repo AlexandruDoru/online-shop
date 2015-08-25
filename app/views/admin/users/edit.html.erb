@@ -1,6 +1,4 @@
-<h1>Editing User Detail</h1>
-
 <%= render 'form' %>
 
-<%= link_to 'Show', @user_detail %> |
-<%= link_to 'Back', user_details_path %>
+<%= link_to 'Show', admin_user_path(@user), class: 'btn btn-default' %>
+<%= link_to 'Back', admin_users_path, class: 'btn btn-primary' %>

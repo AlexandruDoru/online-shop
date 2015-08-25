@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :thumbnail, :content_type => %w(image/jpeg image/jpg image/png)
 
   def employee?
-    role == 'employee'
+    self.role == 'employee'
   end
 
   def customer?
