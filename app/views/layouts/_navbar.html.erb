@@ -1,16 +1,17 @@
 <nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
-      <%= link_to 'Online Shop', root_path, class: 'navbar-brand' %>
-    </div>
+  <div class="container">
       <ul class="nav navbar-nav navbar-right">
         <li>
+          <%= link_to 'Admin', admin_path if can? :manage, :admin %>
+        </li>
+        <li>
+            <%= link_to 'My Account', customer_path(current_user) if current_user.present? %>
+        </li>
+        <li>
           <% if signed_in? %>
-            <%= link_to 'My Account', customer_path(current_user) if current_user.present? %> |
-            <%= link_to 'Admin', admin_path if can? :manage, :admin %> |
             <%= link_to 'Logout', session_path(current_user), method: :delete  %>
           <% else %>
-            <%= link_to 'Login', root_path %>
+            <%= link_to 'Login', new_session_path %>
           <% end %>
         </li>
       </ul>

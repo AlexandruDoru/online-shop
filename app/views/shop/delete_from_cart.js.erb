@@ -1,1 +1,6 @@
-$('#cartNav').html("<%= j render 'common/cart' %>");
+$('#cart').html("<%= j render 'common/cart' %>");
+<% if @order_list.present? %>
+	$('#order_list').html("<%= j render 'common/order_list' %>");
+<% else %>
+	$('#checkout_page').html("<span>No product added yet!</span>");
+<% end %>

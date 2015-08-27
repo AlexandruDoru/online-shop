@@ -1,57 +1,52 @@
-<div class="panel panel-info">
-  <div class="panel-heading">Shopping List</div>
-  <table class="table">
-    <thead>
-      <th>Product</th>
-      <th>Price</th>
-    </thead>
-    <tbody>
-      <% @order.order_lists.each do |item| %>
-        <tr>
-          <td><%= item.product.name %></td>
-          <td><%= item.product.price %></td>
-        </tr>
+
+<h2 class='title'><span>Shopping List</span></h2><br/>
+<% if @order.order_lists.any? %>
+  <div id='checkout_page'>
+    <table class="table" id="order-list">
+      <%= render 'common/order_list' %>
+    </table>
+
+    <% if current_user.shipping_addresses.any? %>
+      <%= form_for :payment, url: pay_path, class: 'form-horizontal', html: {id: 'new_payment'} do |f| %>
+        <%= hidden_field_tag :stripe_card_token %>
+        <%= hidden_field_tag :order_id, @order.id %>
+        <p id="stripe_error"></p>
+
+        <% if @payment.stripe_card_token.present? %>
+          Credit card has been provided.
+        <% else %>
+          <div class="form-group">
+            <%= label_tag :card_number, "Credit Card Number", class: 'col-sm-2 control-label' %>
+            <div class="col-sm-10">
+              <%= text_field_tag :card_number, '', class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag :card_code, "Security Code on Card (CVV)", class: 'col-sm-2 control-label' %>
+            <div class="col-sm-10">
+              <%= text_field_tag :card_code, '', class: 'form-control' %>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag :card_month, "Card Expiration" , class: 'col-sm-2 control-label' %>
+            <div class="col-sm-10">
+              <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+              <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <%= f.submit 'Submit', class: 'btn btn-default' %>
+            </div>
+          </div>
+        <% end %>
+
       <% end %>
-    </tbody>
-  </table>
-  <div class='panel-footer'>
-    <span>Final Price</span>
-    <span class='pull-right' style='margin-right: 130px;'><%= @order.value %></span>
+    <% else %>
+      <%= link_to 'Add Address', add_address_path(current_user.id), class: 'btn btn-primary pull-right' %>
+    <% end %>
   </div>
-</div>
-
-<%= form_for :payment, url: pay_path, class: 'form-horizontal', html: {id: 'new_payment'} do |f| %>
-  <%= hidden_field_tag :stripe_card_token %>
-  <%= hidden_field_tag :order_id, @order.id %>
-  <p id="stripe_error"></p>
-
-  <% if @payment.stripe_card_token.present? %>
-    Credit card has been provided.
-  <% else %>
-    <div class="form-group">
-      <%= label_tag :card_number, "Credit Card Number", class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-        <%= text_field_tag :card_number, '', class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= label_tag :card_code, "Security Code on Card (CVV)", class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-        <%= text_field_tag :card_code, '', class: 'form-control' %>
-      </div>
-    </div>
-    <div class="form-group">
-      <%= label_tag :card_month, "Card Expiration" , class: 'col-sm-2 control-label' %>
-      <div class="col-sm-10">
-        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
-        <%= f.submit 'Submit', class: 'btn btn-default' %>
-      </div>
-    </div>
-  <% end %>
-
+<% else %>
+  <span>No product added yet!</span>
 <% end %>
+

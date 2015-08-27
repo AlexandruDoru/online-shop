@@ -7,7 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<%= render 'layouts/navbar' %>
+<div class='header' >
+  <%= render 'layouts/navbar' %>
+  <div class="container">
+    <div class='pull-left'>
+      <%= link_to 'OnlineShop', root_path, class: 'navbar-brand pull-left' %><br/>
+      <span class='pull-left'>Your e-commerce solution</span>
+      <div style="clear:both;"></div>
+    </div>
+  </div>
+</div>
+<div class='shop-navigation'>
+  <div class='container'>
+    <% MainCategory.all.each do |x| %>
+      <div><%= link_to x.name.upcase, x, class: ('active' if @main_category.name == x.name if @main_category.present?) %></div>
+    <% end %>
+  </div>
+</div>
 
 <div class='container'>
   <div class='row'>

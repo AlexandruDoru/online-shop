@@ -1,0 +1,19 @@
+<thead>
+      <th>Actions</th>
+      <th>Product</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <% @order.order_lists.each do |item| %>
+        <tr>
+          <td><%= link_to 'Remove', delete_from_cart_path(item), remote: true, method: :post, class: 'btn btn-primary' %></td>
+          <td><%= item.product.name %></td>
+          <td><%= item.product.price * item.quantity %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td style="font-weight: bold;">Final Price</td>
+        <td style="font-weight: bold;"><%= @order.value %></td>
+      </tr>
+    </tbody>

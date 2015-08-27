@@ -1,11 +1,9 @@
-<%= @main_category.name %>
-<% @main_category.product_categories.each do |category| %>
-	<div class="col-sm-6 col-md-4">
-	  <div class="thumbnail">
-	    <%= image_tag category.image.url, class: "img-thumbnail" %>
-	    <div class="caption">
-	      <h3><%= link_to category.name, product_category_path(category) %></h3>
-	    </div>
-	</div>
-	</div>
-<% end %>
+<div class='main-category'>
+  <h2 class='title'><span><%= @main_category.name %></span></h2><br/>
+  <% @main_category.product_categories.each do |category| %>
+    <div class="thumbnail-category">
+      <h3><%= link_to category.name, product_category_path(category) %></h3><br/>
+      <%= image_tag category.image.url, class: "img-thumbnail" %>
+    </div>
+  <% end %>
+</div>

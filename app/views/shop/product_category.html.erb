@@ -1,17 +1,21 @@
-<h1><%= @product_category.name %></h1>
-  <% @product_category.products.each do |y| %>
-	<div class="col-sm-6 col-md-4">
-	  <div class="thumbnail">
-	    <%= image_tag y.image.url, class: "img-thumbnail" %>
-	    <div class="caption">
-	      <h3><%= link_to y.name, product_path(y.id) %></h3>
-	      <p>
-	      	<%= form_tag add_to_cart_path(y.id), remote: true do %>
-	      		<%= text_field_tag :quantity, 1 %>
-	      		<%= submit_tag %>
-	      	<% end %>
-	      </p>
-	    </div>
-	</div>
+<div class='main-category'>
+
+<h2 class='title'><span><%= @product_category.name %></span></h2>
+<% @product_category.products.each do |y| %>
+  <div class="thumbnail-category">
+    <h3><span><%= link_to y.name %></span></h3><br/>
+    <%= image_tag y.image.url, class: "img-thumbnail" %>
+    <p>
+      <% if y.discount.present? %>
+        <span class='pull-left price-product discount'>$<%= y.price %></span>
+      <% else %>
+        <span class='pull-left price-product'>$<%= y.price %></span>
+      <% end %>
+      <%= form_tag add_to_cart_path(y.id), remote: true, class: 'pull-right' do %>
+        <%= text_field_tag :quantity, 1, style: 'width: 30px;' %>
+        <%= submit_tag 'Add to Cart', class: 'btn btn-primary' %>
+      <% end %>
+    </p>
+  </div>
+<% end %>
 </div>
-  <% end %>

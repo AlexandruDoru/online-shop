@@ -12,10 +12,14 @@ class ShopController < ApplicationController
 
   def product_category
     @product_category = ProductCategory.find(params[:id])
+    @main_category = @product_category.main_category
   end
 
   def product
     @product = Product.find(params[:id])
+    @product_category = @product.product_category
+        @main_category = @product_category.main_category
+
   end
 
   def add_to_cart

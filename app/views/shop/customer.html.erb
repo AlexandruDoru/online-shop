@@ -1,21 +1,21 @@
-<h3 style="margin-left:20px;">Your Account</h3>
+<h2 class='title'><span>Your Account</span></h2><br/>
 
-<table class="table table-stripped" style="width: 95%; margin-left: 20px;">
-  <caption>Shipping Addresses <%= link_to 'Add Address', add_address_path(@customer.id), class: 'btn btn-primary pull-right' %>
-  </caption>
-  <thead>
-    <th>Product</th>
-    <th>Price</th>
-  </thead>
-  <tbody>
-    <% @customer.shipping_addresses.each do |address| %>
-      <tr>
-        <td><%=  %></td>
-        <td><%=  %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+  <table class="table table-stripped" style="width: 95%; margin-left: 20px;">
+    <caption>Shipping Addresses <%= link_to 'Add Address', add_address_path(@customer.id), class: 'btn btn-primary pull-right' %>
+    </caption>
+    <thead>
+      <th>Product</th>
+      <th>Price</th>
+    </thead>
+    <tbody>
+      <% @customer.shipping_addresses.each do |address| %>
+        <tr>
+          <td><%=  %></td>
+          <td><%=  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 <% @customer.orders.each do |order| %>
   <%= order %>

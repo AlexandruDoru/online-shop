@@ -8,32 +8,37 @@
   <%= javascript_include_tag "https://js.stripe.com/v1/", "application" %>
   <%= tag :meta, :name => "stripe-key", :content => STRIPE_PUBLIC_KEY %>
 </head>
-<body>
-<%= render 'layouts/navbar' %>
-
-<div class='container' id='shopContainer'>
-  <div class='row'>
-    <div class='col-md-12'>
-      <div id='leftNavigation'>
-        <p>Main Categories</p>
-        <% MainCategory.all.each do |x| %>
-          <span><%= link_to x.name, x %></span><br/>
-        <% end %>
-        <% if signed_in? && @order.order_lists.any? %>
-          <hr/>
-          <div id='cartNav'>
-            <%= render 'common/cart' %>
-          </div>
-        <% end %>
-      </div>
-      <div id='rightContent'>
-        <%= render 'layouts/flash_message' %>
-        <%= yield %>
-      </div>
+<body class='front'>
+<div class='header' >
+  <%= render 'layouts/navbar' %>
+  <div class="container">
+    <div class='pull-left'>
+      <%= link_to 'OnlineShop', root_path, class: 'navbar-brand pull-left' %><br/>
+      <span class='pull-left'>Your e-commerce solution</span>
       <div style="clear:both;"></div>
     </div>
+    <div id='cart'>
+      <%= render 'common/cart' %>
+    </div>
+  </div> 
+</div>
+<div class='shop-navigation'>
+  <div class='container'>
+    <% MainCategory.all.each do |x| %>
+      <div><%= link_to x.name.upcase, x, class: ('active' if @main_category.name == x.name if @main_category.present?) %></div>
+    <% end %>
   </div>
 </div>
+  <div class='container' id='shopContainer'>
+    <div class='row'>
+      <div class='col-md-12'>
+        <%= render 'layouts/flash_message' %>
+          <%= yield %>
+        <div style="clear:both;"></div>
+      </div>
+    </div>
+  </div>
 
 </body>
+
 </html>
