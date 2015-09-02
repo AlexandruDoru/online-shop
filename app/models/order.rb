@@ -6,6 +6,10 @@ class Order < ActiveRecord::Base
 
 
   def add_to_order_list(item, quantity, user)
+    if Product.find(item).quantity < quantity.to_i
+      return false
+    end
+
     order_item = order_lists.find_by_product_id(item)
     if order_item.present?
       order_item.quantity = order_item.quantity + quantity.to_i

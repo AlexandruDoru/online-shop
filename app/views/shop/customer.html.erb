@@ -4,19 +4,42 @@
     <caption>Shipping Addresses <%= link_to 'Add Address', add_address_path(@customer.id), class: 'btn btn-primary pull-right' %>
     </caption>
     <thead>
-      <th>Product</th>
-      <th>Price</th>
+      <th>City</th>
+      <th>Street</th>
+      <th>Zipcode</th>
     </thead>
     <tbody>
       <% @customer.shipping_addresses.each do |address| %>
         <tr>
-          <td><%=  %></td>
-          <td><%=  %></td>
+          <td><%=  address.address.city %></td>
+          <td><%=  address.address.street %></td>
+          <td><%=  address.address.zipcode %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 
-<% @customer.orders.each do |order| %>
-  <%= order %>
-<% end %>
+<h2 class='title'><span>Orders</span></h2><br/>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Products</th>
+      <th>Value</th>
+      <th>Shipping Address</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @customer.orders.each do |order| %>
+      <tr>
+        <td>
+          <% order.order_lists.each do |product| %>
+            <span><%= product.product.name %></span><br/>
+          <% end %>
+        </td>
+        <td><%= order.value %></td>
+        <td><%= order.shipping_address.address.street if order.shipping_address.present? %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

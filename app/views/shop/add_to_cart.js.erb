@@ -1,1 +1,5 @@
-$('#cart').html("<%= j render 'common/cart' %>");
+<% if @added %>
+	$('#cart').html("<%= j render 'common/cart' %>");
+<% else %>
+	alert('The wanted quantity is too large');
+<% end %>

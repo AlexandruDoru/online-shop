@@ -23,7 +23,7 @@ class ShopController < ApplicationController
   end
 
   def add_to_cart
-    @order.add_to_order_list(params[:id], params[:quantity], current_user)
+    @added = @order.add_to_order_list(params[:id], params[:quantity], current_user)
   end
 
   def delete_from_cart
@@ -40,6 +40,7 @@ class ShopController < ApplicationController
       cardnumber: params[:card_number],
       order_id: params[:order_id]
     )
+    Order.find(params[:order_id]).update_attributes(shipping_address_id: params[:shipping_address_id])
     if @payment.save_with_payment(current_user.email)
       session.delete(:order_id)
       redirect_to root_path, :notice => "Thank you for buying!"
@@ -57,6 +58,16 @@ class ShopController < ApplicationController
   end
 
   def create_address
+    @address = Address.new(state_id: 1, city: params[:city], street: params[:street], zipcode: params[:zipcode])
+    if @address.save
+      if ShippingAddress.create(user_id: params[:user_id], address_id: @address.id)
+        redirect_to checkout_path, :notive => 'Address added'
+      else
+        redirect_to :back, :error => 'There was an error'
+      end
+    else
+      redirect_to :back, :error => 'There was an error'
+    end
   end
     
   private 

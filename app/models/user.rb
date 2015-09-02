@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   has_many :orders
   has_many :shipping_addresses
-
+  has_many :addresses, through: :shipping_addresses
+  
   has_secure_password
 
   before_save { self.email.downcase! }
